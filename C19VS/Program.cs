@@ -16,7 +16,7 @@ namespace C19VS
     public class Program
     {
 		// ONLY ALTER THE FILE PATH BELOW
-		public const string FILE_PATH = "C:/Users/karim/OneDrive/Documents/computer_engineering/summer-2021/COMP-353/projects/project-B/project_B_username_password.txt";
+		public static string FILE_PATH = FilePath.GetFilePath(User.KARIM);
 
 		// DO NOT ALTER THE CONST VALUES BELOW
 		public const string sshServer = "login.encs.concordia.ca";
