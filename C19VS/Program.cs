@@ -17,12 +17,7 @@ namespace C19VS
     {
 		public static void Main(string[] args)
         {
-			//DatabaseHelper databaseHelper = new DatabaseHelper(User.KARIM);
-			//databaseHelper.Connect();
-			//await databaseHelper.TestQueryAsync();
-			//databaseHelper.Disconnect();
-
-			CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
