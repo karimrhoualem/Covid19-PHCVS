@@ -77,21 +77,47 @@ public class DatabaseHelper
 		}
     }
 
-	public async Task TestQueryAsync()
+	public async Task<List<object[]>> QueryTable(string tableName)
     {
-        if (connection.State == ConnectionState.Open)
-        {
-			using var command = new MySqlCommand("SELECT * FROM njc353_1.Person;", connection);
+		if (connection.State == ConnectionState.Open)
+		{
+			using var command = new MySqlCommand($"SELECT * FROM njc353_1.{tableName};", connection);
 			using var reader = await command.ExecuteReaderAsync();
+
+			List<object[]> tableList = new List<object[]>();
+
+			int headerCounter = 0;
+
 			while (await reader.ReadAsync())
 			{
-				var column0 = reader.GetValue(0);
-				var column1 = reader.GetValue(1);
-				var column2 = reader.GetValue(2);
-				var column3 = reader.GetValue(3);
+				var count = reader.FieldCount;
+				object[] columnNames = new object[count];
+
+                if (headerCounter == 0)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        columnNames[i] = reader.GetName(i);
+                    }
+
+                    tableList.Add(columnNames);
+
+					headerCounter++;
+                }
+
+				object[] rowValues = new object[count];
+				reader.GetValues(rowValues);
+
+				tableList.Add(rowValues);
 			}
+
+			return tableList;
 		}
-    }
+        else
+        {
+			return null;
+        }
+	}
 
 	private static (SshClient SshClient, uint Port) ConnectSsh(string sshHostName, string sshUserName, string sshPassword = null,
 					string sshKeyFile = null, string sshPassPhrase = null, int sshPort = 22, string databaseServer = "localhost", int databasePort = 3306)

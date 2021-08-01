@@ -11,16 +11,26 @@ namespace C19VS.Pages
 {
     public class IndexModel : PageModel
     {
+        public string TABLE_NAME = "Person";
+        public List<object[]> tableList;
+        
         private readonly ILogger<IndexModel> _logger;
-        public string Name { get; set; }
+        private DatabaseHelper databaseHelper;
 
-        private IConfiguration _configuration;
-
-        public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            Name = "Gabbi";
+            databaseHelper = new DatabaseHelper(C19VS.User.KARIM);
 
-            _configuration = configuration;
+            GetRowsAsync();
+        }
+
+        private async Task GetRowsAsync()
+        {
+            databaseHelper.Connect();
+
+            tableList = await databaseHelper.QueryTable(TABLE_NAME);
+
+            databaseHelper.Disconnect();
         }
 
         public void OnGet()
