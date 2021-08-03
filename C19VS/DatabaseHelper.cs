@@ -1,4 +1,5 @@
 ﻿using C19VS;
+using C19VS.Models;
 using MySql.Data.MySqlClient;
 using Renci.SshNet;
 using System;
@@ -7,7 +8,15 @@ using System.Data;
 using System.IO;
 using System.Threading.Tasks;
 
-public class DatabaseHelper
+public interface IDatabaseHelper
+{
+	public void ConnectSshClient();
+	public void DisconnectSshClient();
+	public void ConnectDatabase();
+	public void DisconnectDatabase();
+}
+
+public class DatabaseHelper : IDatabaseHelper
 {
 	private static string FILE_PATH;
 
@@ -35,14 +44,30 @@ public class DatabaseHelper
 		sshPassword = username_password[1];
 	}
 
-	public void Connect()
+	public void ConnectSshClient()
     {
-        (sshClient, localPort) = ConnectSsh(sshServer, sshUserName, sshPassword, databaseServer: databaseServer);
+		(sshClient, localPort) = ConnectSsh(sshServer, sshUserName, sshPassword, databaseServer: databaseServer);
 
+		if (sshClient.IsConnected)
+		{
+			Console.WriteLine("SshClient connection open.");
+		}
+	}
+
+	public void DisconnectSshClient()
+    {
+		sshClient.Disconnect();
+
+		if (!sshClient.IsConnected)
+		{
+			Console.WriteLine("SshClient connection closed.");
+		}
+	}
+
+	public void ConnectDatabase()
+    {
         if (sshClient.IsConnected)
         {
-			Console.WriteLine("SshClient connection open.");
-
             var connectionString = $"Server=127.0.0.1;Port={localPort};Username={databaseUserName};Password={databasePassword};Connection Timeout=60000;DefaultCommandTimeout=60000;SslMode=None;";
 
             connection = new MySqlConnection(connectionString);
@@ -54,7 +79,7 @@ public class DatabaseHelper
         }
     }
 
-	public void Disconnect()
+	public void DisconnectDatabase()
     {
         if (sshClient.IsConnected)
         {
@@ -68,16 +93,9 @@ public class DatabaseHelper
 				Console.WriteLine("MySql connection closed.");
 			}
 		}
-
-		sshClient.Disconnect();
-
-        if (!sshClient.IsConnected)
-        {
-			Console.WriteLine("SshClient connection closed.");
-		}
     }
 
-	public async Task<List<object[]>> QueryTable(string tableName)
+	public async Task<List<object[]>> TableSelectQuery(string tableName)
     {
 		if (connection.State == ConnectionState.Open)
 		{
@@ -117,6 +135,76 @@ public class DatabaseHelper
         {
 			return null;
         }
+	}
+
+	public async Task<Person> PersonSelectQueryAsync(string medicareNum)
+    {
+		using var command = new MySqlCommand($"SELECT * FROM njc353_1.Person WHERE medicare='{medicareNum}';", connection);
+		using var reader = await command.ExecuteReaderAsync();
+
+		while (await reader.ReadAsync())
+		{
+			var count = reader.FieldCount;
+
+			object[] rowValues = new object[count];
+			reader.GetValues(rowValues);
+
+			Person person = new Person();
+			person.MapToPerson(rowValues);
+
+			return person;
+		}
+
+		return null;
+	}
+
+	public async Task<Person> UpdatePersonAsync(Person person)
+    {
+		string queryString = $"UPDATE njc353_1.Person SET firstName='{person.FirstName}', lasttName='{person.LastName}', dob='{person.DateOfBirth.ToShortDateString()}', telephone='{person.Telephone}'," +
+			$"address='{person.Address}', city='{person.City}', province='{person.Province}', postalCode='{person.PostalCode}'," +
+			$"citizenship='{person.Citizenship}', email='{person.Email}', infected='{(person.Infected ? 1 : 0)}', ageGroup='{person.AgeGroup}' WHERE medicare='{person.Medicare}';";
+
+		using var command = new MySqlCommand(queryString, connection);
+		int rowsAffected = command.ExecuteNonQuery();
+
+        if (rowsAffected == 1)
+        {
+			return await PersonSelectQueryAsync(person.Medicare);
+        }
+
+		return null;
+    }
+
+    public bool DeletePerson(Person person)
+    {
+        string queryString = $"DELETE FROM njc353_1.Person WHERE medicare='{person.Medicare}';";
+
+        using var command = new MySqlCommand(queryString, connection);
+        int rowsAffected = command.ExecuteNonQuery();
+
+        if (rowsAffected == 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+	public bool InsertPerson(Person person)
+	{
+		string queryString = $"INSERT INTO njc353_1.Person VALUES('{person.Medicare}', '{person.FirstName}', '{person.LastName}', '{person.DateOfBirth.ToShortDateString()}'," +
+			$"'{person.Telephone}', '{person.Address}', '{person.City}', '{person.Province}', '{person.PostalCode}', '{person.Citizenship}', '{person.Email}'," +
+			$"'{(person.Infected ? 1 : 0)}', '{person.AgeGroup}');";
+
+		using var command = new MySqlCommand(queryString, connection);
+		int rowsAffected = command.ExecuteNonQuery();
+
+		if (rowsAffected == 1)
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	private static (SshClient SshClient, uint Port) ConnectSsh(string sshHostName, string sshUserName, string sshPassword = null,

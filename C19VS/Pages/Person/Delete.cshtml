@@ -1,0 +1,17 @@
+﻿@page "{medicareNum}"
+@model C19VS.Pages.Person.DeleteModel
+@{
+}
+
+<h1>Deleting: @Model.Person.FirstName @Model.Person.LastName</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Person.Medicare" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.Person.FirstName @Model.Person.LastName</button>
+            <a asp-page="/Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>
