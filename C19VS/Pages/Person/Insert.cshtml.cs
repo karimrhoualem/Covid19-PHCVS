@@ -9,6 +9,8 @@ namespace C19VS.Pages.Person
 {
     public class InsertModel : PageModel
     {
+        public const string TASK_NAME = "Person - InsertModel";
+
         public Models.Person Person { get; private set; }
         public DatabaseHelper DatabaseHelper { get; private set; }
 
@@ -20,8 +22,20 @@ namespace C19VS.Pages.Person
         public IActionResult OnPostAsync(Models.Person person)
         {
             DatabaseHelper.ConnectDatabase();
-            bool insertSuccessful = DatabaseHelper.InsertPerson(person);
+
+            bool insertSuccessful = DatabaseHelper.InsertRecord(typeof(Models.Person), person);
+
+            if (insertSuccessful)
+            {
+                Console.WriteLine($"[{TASK_NAME}] {person.firstName} {person.lastName} inserted successfully.");
+            }
+            else
+            {
+                Console.WriteLine($"[{TASK_NAME}] Error inserting {person.firstName} {person.lastName}.");
+            }
+
             DatabaseHelper.DisconnectDatabase();
+
             return RedirectToPage("/Index");
         }
     }

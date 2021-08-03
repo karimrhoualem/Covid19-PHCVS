@@ -7,42 +7,59 @@ namespace C19VS.Models
 {
     public class Person
     {
-        public string Medicare { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string Telephone { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string Province { get; set; }
-        public string PostalCode { get; set; }
-        public string Citizenship { get; set; }
-        public string Email { get; set; }
-        public bool Infected { get; set; }
-        public string AgeGroup { get; set; }
+        public string medicare { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public DateTime dob { get; set; }
+        public string telephone { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string province { get; set; }
+        public string postalCode { get; set; }
+        public string citizenship { get; set; }
+        public string email { get; set; }
+        public bool infected { get; set; }
+        public string ageGroup { get; set; }
 
         public Person()
         {
 
         }
 
-        public Person MapToPerson(object[] personArray)
+        public Person(object obj)
         {
-            Medicare = personArray[0] as string;
-            FirstName = personArray[1] as string;
-            LastName = personArray[2] as string;
-            DateOfBirth = (DateTime) personArray[3];
-            Telephone = personArray[4] as string;
-            Address = personArray[5] as string;
-            City = personArray[6] as string;
-            Province = personArray[7] as string;
-            PostalCode = personArray[8] as string;
-            Citizenship = personArray[9] as string;
-            Email = personArray[10] as string;
-            Infected = (bool) personArray[11];
-            AgeGroup = personArray[12] as string;
+            var person = obj as Person;
 
-            return this;
+            this.medicare = person.medicare;
+            this.firstName = person.firstName;
+            this.lastName = person.lastName;
+            this.dob = person.dob;
+            this.telephone = person.telephone;
+            this.address = person.address;
+            this.city = person.city;
+            this.province = person.province;
+            this.postalCode = person.postalCode;
+            this.citizenship = person.citizenship;
+            this.email = person.email;
+            this.infected = person.infected;
+            this.ageGroup = person.ageGroup;
+        }
+
+        public Person(object[] obj)
+        {
+            medicare = obj[0] as string;
+            firstName = obj[1] as string;
+            lastName = obj[2] as string;
+            dob = (DateTime)obj[3];
+            telephone = obj[4] as string;
+            address = obj[5] as string;
+            city = obj[6] as string;
+            province = obj[7] as string;
+            postalCode = obj[8] as string;
+            citizenship = obj[9] as string;
+            email = obj[10] as string;
+            infected = (bool)obj[11];
+            ageGroup = obj[12] as string;
         }
     }
 }

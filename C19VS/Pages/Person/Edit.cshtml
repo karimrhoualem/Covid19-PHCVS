@@ -1,101 +1,101 @@
-﻿@page "{medicareNum}"
+﻿@page "{medicare}"
 @model C19VS.Pages.Person.EditModel
 @{
 }
 
-<h1>Editing: @Model.Person.FirstName @Model.Person.LastName</h1>
+<h1>Editing: @Model.Person.firstName @Model.Person.lastName</h1>
 
 <form method="post" class="mt-3">
-    <input hidden asp-for="Person.Medicare" />
+    <input hidden asp-for="Person.medicare" />
 
     <div class="form-group row">
-        <label asp-for="Person.Medicare">Medicare Number</label>
+        <label asp-for="Person.medicare">medicare Number</label>
         <div class="col-sm-10">
-            <input asp-for="Person.Medicare" placeholder="@Model.Person.Medicare" />
+            <input asp-for="Person.medicare" placeholder="@Model.Person.medicare" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.FirstName">First Name</label>
+        <label asp-for="Person.firstName">First Name</label>
         <div class="col-sm-10">
-            <input asp-for="Person.FirstName" placeholder="@Model.Person.FirstName" />
+            <input asp-for="Person.firstName" placeholder="@Model.Person.firstName" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.LastName">Last Name</label>
+        <label asp-for="Person.lastName">Last Name</label>
         <div class="col-sm-10">
-            <input asp-for="Person.LastName" placeholder="@Model.Person.LastName" />
+            <input asp-for="Person.lastName" placeholder="@Model.Person.lastName" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.DateOfBirth">Date of Birth</label>
+        <label asp-for="Person.dob">Date of Birth</label>
         <div class="col-sm-10">
-            <input asp-for="Person.DateOfBirth" placeholder="@Model.Person.DateOfBirth.ToString()" />
+            <input asp-for="Person.dob" placeholder="@Model.Person.dob.ToString()" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.Telephone">Telephone</label>
+        <label asp-for="Person.telephone">telephone</label>
         <div class="col-sm-10">
-            <input asp-for="Person.Telephone" placeholder="@Model.Person.Telephone" />
+            <input asp-for="Person.telephone" placeholder="@Model.Person.telephone" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.Address">Address</label>
+        <label asp-for="Person.address">address</label>
         <div class="col-sm-10">
-            <input asp-for="Person.Address" placeholder="@Model.Person.Address" />
+            <input asp-for="Person.address" placeholder="@Model.Person.address" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.City">City</label>
+        <label asp-for="Person.city">city</label>
         <div class="col-sm-10">
-            <input asp-for="Person.City" placeholder="@Model.Person.City" />
+            <input asp-for="Person.city" placeholder="@Model.Person.city" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.Province">Province</label>
+        <label asp-for="Person.province">province</label>
         <div class="col-sm-10">
-            <input asp-for="Person.Province" placeholder="@Model.Person.Province" />
+            <input asp-for="Person.province" placeholder="@Model.Person.province" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.PostalCode">Postal Code</label>
+        <label asp-for="Person.postalCode">Postal Code</label>
         <div class="col-sm-10">
-            <input asp-for="Person.PostalCode" placeholder="@Model.Person.PostalCode" />
+            <input asp-for="Person.postalCode" placeholder="@Model.Person.postalCode" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.Citizenship">Citizenship</label>
+        <label asp-for="Person.citizenship">citizenship</label>
         <div class="col-sm-10">
-            <input asp-for="Person.Citizenship" placeholder="@Model.Person.Citizenship" />
+            <input asp-for="Person.citizenship" placeholder="@Model.Person.citizenship" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.Email">Email</label>
+        <label asp-for="Person.email">email</label>
         <div class="col-sm-10">
-            <input asp-for="Person.Email" placeholder="@Model.Person.Email" />
+            <input asp-for="Person.email" placeholder="@Model.Person.email" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.Infected">Infected</label>
+        <label asp-for="Person.infected">infected</label>
         <div class="col-sm-10">
-            <input asp-for="Person.Infected" placeholder="@Model.Person.Infected" />
+            <input asp-for="Person.infected" placeholder="@Model.Person.infected" />
         </div>
     </div>
 
     <div class="form-group row">
-        <label asp-for="Person.AgeGroup">AgeGroup</label>
+        <label asp-for="Person.ageGroup">ageGroup</label>
         <div class="col-sm-10">
-            <input asp-for="Person.AgeGroup" placeholder="@Model.Person.AgeGroup" />
+            <input asp-for="Person.ageGroup" placeholder="@Model.Person.ageGroup" />
         </div>
     </div>
 

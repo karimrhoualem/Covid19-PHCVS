@@ -21,18 +21,13 @@ namespace C19VS.Pages
             DatabaseHelper = (DatabaseHelper)databaseHelper;
         }
 
-        private async Task GetRowsAsync()
+        public async Task OnGetAsync()
         {
             DatabaseHelper.ConnectDatabase();
 
-            tableList = await DatabaseHelper.TableSelectQuery(TABLE_NAME);
+            tableList = await DatabaseHelper.SelectAllRecords(TABLE_NAME);
 
             DatabaseHelper.DisconnectDatabase();
-        }
-
-        public async Task OnGetAsync()
-        {
-            await GetRowsAsync();
         }
     }
 }
