@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 public interface IDatabaseHelper
@@ -95,7 +96,7 @@ public class DatabaseHelper : IDatabaseHelper
 		}
     }
 
-	public async Task<List<object[]>> TableSelectQuery(string tableName)
+	public async Task<List<object[]>> SelectAllRecords(string tableName)
     {
 		if (connection.State == ConnectionState.Open)
 		{
@@ -137,9 +138,11 @@ public class DatabaseHelper : IDatabaseHelper
         }
 	}
 
-	public async Task<Person> PersonSelectQueryAsync(string medicareNum)
+	public async Task<object> SelectRecordAsync(Type type, string primaryKeyName, string primaryKeyValue)
     {
-		using var command = new MySqlCommand($"SELECT * FROM njc353_1.Person WHERE medicare='{medicareNum}';", connection);
+		string queryString = $"SELECT * FROM njc353_1.{type.Name} WHERE {primaryKeyName}='{primaryKeyValue}';";
+
+		using var command = new MySqlCommand(queryString, connection);
 		using var reader = await command.ExecuteReaderAsync();
 
 		while (await reader.ReadAsync())
@@ -149,35 +152,54 @@ public class DatabaseHelper : IDatabaseHelper
 			object[] rowValues = new object[count];
 			reader.GetValues(rowValues);
 
-			Person person = new Person();
-			person.MapToPerson(rowValues);
+			var objInstance = Activator.CreateInstance(type, new object[] { rowValues } );
 
-			return person;
+			return objInstance;
 		}
 
 		return null;
 	}
 
-	public async Task<Person> UpdatePersonAsync(Person person)
+    public bool UpdateRecord(Type type, object obj, string primaryKeyName, string primaryKeyValue)
     {
-		string queryString = $"UPDATE njc353_1.Person SET firstName='{person.FirstName}', lasttName='{person.LastName}', dob='{person.DateOfBirth.ToShortDateString()}', telephone='{person.Telephone}'," +
-			$"address='{person.Address}', city='{person.City}', province='{person.Province}', postalCode='{person.PostalCode}'," +
-			$"citizenship='{person.Citizenship}', email='{person.Email}', infected='{(person.Infected ? 1 : 0)}', ageGroup='{person.AgeGroup}' WHERE medicare='{person.Medicare}';";
+        System.Reflection.PropertyInfo[] props = null;
 
-		using var command = new MySqlCommand(queryString, connection);
-		int rowsAffected = command.ExecuteNonQuery();
+		var objInstance = Activator.CreateInstance(type, obj);
+
+        StringBuilder sb = new StringBuilder();
+        sb.Append($"UPDATE njc353_1.{type.Name} SET ");
+
+		props = objInstance.GetType().GetProperties();
+
+		foreach (var prop in props)
+		{
+			var name = prop.Name;
+			var value = prop.GetValue(objInstance, null);
+
+			// Exceptions for Person.
+			if (name == "dob") value = ((DateTime)value).ToShortDateString();
+			if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
+
+			//TODO: Add other exceptions below.
+
+			sb.Append($"{name}='{value}',");
+		}
+
+        sb.Length--;
+        sb.Append($" WHERE {primaryKeyName}='{primaryKeyValue}';");
+
+        using var command = new MySqlCommand(sb.ToString(), connection);
+        int rowsAffected = command.ExecuteNonQuery();
 
         if (rowsAffected == 1)
-        {
-			return await PersonSelectQueryAsync(person.Medicare);
-        }
+            return true;
 
-		return null;
+        return false;
     }
 
-    public bool DeletePerson(Person person)
+    public bool DeleteRecord(Type type, string primaryKeyName, string primaryKeyValue)
     {
-        string queryString = $"DELETE FROM njc353_1.Person WHERE medicare='{person.Medicare}';";
+        string queryString = $"DELETE FROM njc353_1.{type.Name} WHERE {primaryKeyName}='{primaryKeyValue}';";
 
         using var command = new MySqlCommand(queryString, connection);
         int rowsAffected = command.ExecuteNonQuery();
@@ -190,13 +212,35 @@ public class DatabaseHelper : IDatabaseHelper
         return false;
     }
 
-	public bool InsertPerson(Person person)
+	public bool InsertRecord(Type type, object obj)
 	{
-		string queryString = $"INSERT INTO njc353_1.Person VALUES('{person.Medicare}', '{person.FirstName}', '{person.LastName}', '{person.DateOfBirth.ToShortDateString()}'," +
-			$"'{person.Telephone}', '{person.Address}', '{person.City}', '{person.Province}', '{person.PostalCode}', '{person.Citizenship}', '{person.Email}'," +
-			$"'{(person.Infected ? 1 : 0)}', '{person.AgeGroup}');";
+		System.Reflection.PropertyInfo[] props = null;
 
-		using var command = new MySqlCommand(queryString, connection);
+		var objInstance = Activator.CreateInstance(type, obj);
+
+		StringBuilder sb = new StringBuilder();
+		sb.Append($"INSERT INTO njc353_1.{type.Name} VALUES (");
+
+		props = objInstance.GetType().GetProperties();
+
+		foreach (var prop in props)
+		{
+			var name = prop.Name;
+			var value = prop.GetValue(objInstance, null);
+
+			// Exceptions for Person.
+			if (name == "dob") value = ((DateTime)value).ToShortDateString();
+			if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
+
+			//TODO: Add other exceptions below.
+
+			sb.Append($"'{value}',");
+		}
+
+		sb.Length--;
+		sb.Append($");");
+
+		using var command = new MySqlCommand(sb.ToString(), connection);
 		int rowsAffected = command.ExecuteNonQuery();
 
 		if (rowsAffected == 1)
