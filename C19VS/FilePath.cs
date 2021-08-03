@@ -25,7 +25,7 @@ namespace C19VS
                 case User.MJ:
                     return "C:/Users/Caste/OneDrive/Bureau/COMP 353/Assignment/Main_Project/username_password.txt";
                 default:
-                    return "";
+                    return "ghijjj";
             }
         }
     }
