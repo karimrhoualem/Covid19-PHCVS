@@ -14,28 +14,25 @@ namespace C19VS.Pages
         public string TABLE_NAME = "Person";
         public List<object[]> tableList;
         
-        private readonly ILogger<IndexModel> _logger;
-        private DatabaseHelper databaseHelper;
+        private DatabaseHelper DatabaseHelper;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(IDatabaseHelper databaseHelper)
         {
-            databaseHelper = new DatabaseHelper(C19VS.User.KARIM);
-
-            GetRowsAsync();
+            DatabaseHelper = (DatabaseHelper)databaseHelper;
         }
 
         private async Task GetRowsAsync()
         {
-            databaseHelper.Connect();
+            DatabaseHelper.ConnectDatabase();
 
-            tableList = await databaseHelper.QueryTable(TABLE_NAME);
+            tableList = await DatabaseHelper.TableSelectQuery(TABLE_NAME);
 
-            databaseHelper.Disconnect();
+            DatabaseHelper.DisconnectDatabase();
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-
+            await GetRowsAsync();
         }
     }
 }

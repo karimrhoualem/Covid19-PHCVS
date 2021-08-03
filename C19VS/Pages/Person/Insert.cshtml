@@ -1,0 +1,104 @@
+﻿@page
+@model C19VS.Pages.Person.InsertModel
+@{
+}
+
+<form method="post" class="mt-3">
+    <div class="form-group row">
+        <label asp-for="Person.Medicare">Medicare Number</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Medicare"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.FirstName">First Name</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.FirstName"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.LastName">Last Name</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.LastName"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.DateOfBirth">Date of Birth</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.DateOfBirth"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Telephone">Telephone</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Telephone"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Address">Address</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Address"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.City">City</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.City"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Province">Province</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Province"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.PostalCode">Postal Code</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.PostalCode"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Citizenship">Citizenship</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Citizenship"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Email">Email</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Email"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Infected">Infected</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Infected"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.AgeGroup">AgeGroup</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.AgeGroup"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="/Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

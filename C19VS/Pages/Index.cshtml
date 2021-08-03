@@ -7,6 +7,8 @@
 <div>
     <h1>Table: @Model.TABLE_NAME</h1>
     <hr />
+    <a asp-page="/Person/Insert" class="btn btn-primary">Insert New @Model.TABLE_NAME</a>
+    <hr />
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -14,6 +16,7 @@
                 {
                     <th>@column</th>
                 }
+                <th>Edit/Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +27,12 @@
                     {
                         <td>@column</td>
                     }
+                    <td>
+                        <span style="display: inline;">
+                            <a asp-page="/Person/Edit" asp-route-medicareNum="@row[0]" class="btn btn-primary">Edit</a>
+                            <a asp-page="/Person/Delete" asp-route-medicareNum="@row[0]" class="btn btn-danger">Delete</a>
+                        </span>
+                    </td>
                 </tr>
             }
         </tbody>

@@ -1,0 +1,109 @@
+﻿@page "{medicareNum}"
+@model C19VS.Pages.Person.EditModel
+@{
+}
+
+<h1>Editing: @Model.Person.FirstName @Model.Person.LastName</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Person.Medicare" />
+
+    <div class="form-group row">
+        <label asp-for="Person.Medicare">Medicare Number</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Medicare" placeholder="@Model.Person.Medicare" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.FirstName">First Name</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.FirstName" placeholder="@Model.Person.FirstName" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.LastName">Last Name</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.LastName" placeholder="@Model.Person.LastName" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.DateOfBirth">Date of Birth</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.DateOfBirth" placeholder="@Model.Person.DateOfBirth.ToString()" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Telephone">Telephone</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Telephone" placeholder="@Model.Person.Telephone" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Address">Address</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Address" placeholder="@Model.Person.Address" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.City">City</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.City" placeholder="@Model.Person.City" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Province">Province</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Province" placeholder="@Model.Person.Province" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.PostalCode">Postal Code</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.PostalCode" placeholder="@Model.Person.PostalCode" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Citizenship">Citizenship</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Citizenship" placeholder="@Model.Person.Citizenship" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Email">Email</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Email" placeholder="@Model.Person.Email" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.Infected">Infected</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.Infected" placeholder="@Model.Person.Infected" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Person.AgeGroup">AgeGroup</label>
+        <div class="col-sm-10">
+            <input asp-for="Person.AgeGroup" placeholder="@Model.Person.AgeGroup" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="/Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>
+
