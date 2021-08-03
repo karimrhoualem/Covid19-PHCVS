@@ -48,7 +48,7 @@ public class DatabaseHelper : IDatabaseHelper
 	public void ConnectSshClient()
     {
 		(sshClient, localPort) = ConnectSsh(sshServer, sshUserName, sshPassword, databaseServer: databaseServer);
-
+		
 		if (sshClient.IsConnected)
 		{
 			Console.WriteLine("SshClient connection open.");
