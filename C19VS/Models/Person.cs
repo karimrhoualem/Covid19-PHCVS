@@ -20,6 +20,7 @@ namespace C19VS.Models
         public string email { get; set; }
         public bool infected { get; set; }
         public string ageGroup { get; set; }
+        public string SSN { get; set; }
 
         public Person()
         {
@@ -43,6 +44,7 @@ namespace C19VS.Models
             this.email = person.email;
             this.infected = person.infected;
             this.ageGroup = person.ageGroup;
+            this.SSN = person.SSN;
         }
 
         public Person(object[] obj)
@@ -60,6 +62,7 @@ namespace C19VS.Models
             email = obj[10] as string;
             infected = (bool)obj[11];
             ageGroup = obj[12] as string;
+            SSN = obj[13] as string;
         }
     }
 }
