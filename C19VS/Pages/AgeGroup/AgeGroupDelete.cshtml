@@ -1,0 +1,18 @@
+﻿@page "{ageGroup}"
+@model C19VS.Pages.AgeGroup.AgeGroupDeleteModel
+@{
+}
+
+<h1>Deleting: @Model.AgeGroup.ageGroup</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="AgeGroup.ageGroup" />
+    <input hidden asp-for="AgeGroup.Allowed" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.AgeGroup.ageGroup</button>
+            <a asp-page="/AgeGroup/AgeGroupIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

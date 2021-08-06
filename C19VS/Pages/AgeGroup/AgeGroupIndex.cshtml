@@ -1,4 +1,40 @@
 ﻿@page
 @model C19VS.Pages.AgeGroup.IndexModel
 @{
+    ViewData["Title"] = Model.TABLE_NAME;
 }
+
+<div>
+    <h1>Table: @Model.TABLE_NAME</h1>
+    <hr />
+    <a asp-page="/AgeGroup/AgeGroupInsert" class="btn btn-primary">Insert New @Model.TABLE_NAME</a>
+    <hr />
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                @foreach (var column in Model.tableList[0])
+                {
+                    <th>@column</th>
+                }
+                <th>Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.tableList.Skip(1))
+            {
+                <tr>
+                    @foreach (var column in row)
+                    {
+                        <td>@column</td>
+                    }
+                    <td>
+                        <span style="display: inline;">
+                            <a asp-page="/AgeGroup/AgeGroupEdit" asp-route-ageGroup="@row[0]" class="btn btn-primary">Edit</a>
+                            <a asp-page="/AgeGroup/AgeGroupDelete" asp-route-ageGroup="@row[0]" class="btn btn-danger">Delete</a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
