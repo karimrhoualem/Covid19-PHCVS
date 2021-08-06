@@ -36,7 +36,7 @@ namespace C19VS.Pages.Person
 
             DatabaseHelper.DisconnectDatabase();
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Person/PersonIndex");
         }
     }
 }

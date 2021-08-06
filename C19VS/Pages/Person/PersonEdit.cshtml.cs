@@ -30,7 +30,7 @@ namespace C19VS.Pages.Person
             
             if (Person == null)
             {
-                return RedirectToPage("/Index");
+                return RedirectToPage("/Person/PersonIndex");
             }
 
             return Page();
@@ -53,7 +53,7 @@ namespace C19VS.Pages.Person
 
             DatabaseHelper.DisconnectDatabase();
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Person/PersonIndex");
         }
     }
 }
