@@ -9,8 +9,23 @@ namespace C19VS.Pages.AgeGroup
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public string TABLE_NAME = "AgeGroup";
+        public List<object[]> tableList;
+
+        private DatabaseHelper DatabaseHelper;
+
+        public IndexModel(IDatabaseHelper databaseHelper)
         {
+            DatabaseHelper = (DatabaseHelper)databaseHelper;
+        }
+
+        public async Task OnGetAsync()
+        {
+            DatabaseHelper.ConnectDatabase();
+
+            tableList = await DatabaseHelper.SelectAllRecords(TABLE_NAME);
+
+            DatabaseHelper.DisconnectDatabase();
         }
     }
 }

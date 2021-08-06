@@ -180,6 +180,9 @@ public class DatabaseHelper : IDatabaseHelper
 			if (name == "dob") value = ((DateTime)value).ToShortDateString();
 			if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
 
+			// Exceptions for AgeGroup
+			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
+
 			//TODO: Add other exceptions below.
 
 			sb.Append($"{name}='{value}',");
@@ -231,6 +234,9 @@ public class DatabaseHelper : IDatabaseHelper
 			// Exceptions for Person.
 			if (name == "dob") value = ((DateTime)value).ToShortDateString();
 			if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
+
+			// Exceptions for AgeGroup
+			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
 
 			//TODO: Add other exceptions below.
 
