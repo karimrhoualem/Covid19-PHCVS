@@ -1,0 +1,36 @@
+/* 
+******************************************************************************
+								TABLE CREATION
+******************************************************************************
+
+
+
+******************************************************************************
+
+CREATE TABLE Infection (
+    SSN VARCHAR(10),
+    InfectionDate DATE,
+    VariantID VARCHAR(10),
+    primary key (SSN, infectionDate)
+);
+
+
+
+/* 
+******************************************************************************
+									QUERIES
+******************************************************************************
+*/
+
+
+/* Comment out for testing */
+-- select * from Person;
+-- select * from Doses;
+-- select * from Infection;
+-- select * from Vaccination;
+-- select * from VaccinationFacility;
+-- DROP TABLE Infection;
+-- DROP TABLE Doses;
+-- DROP TABLE Person;
+-- DROP TABLE Vaccination;
+-- DROP TABLE VaccinationFacility;
