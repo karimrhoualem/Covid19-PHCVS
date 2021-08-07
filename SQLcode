@@ -3,6 +3,53 @@
 								TABLE CREATION
 ******************************************************************************
 
+CREATE TABLE Employees (
+	SSN VARCHAR(10),
+	EID VARCHAR(10),
+	medicare VARCHAR(10),
+	firstName VARCHAR(255),
+	lastName VARCHAR(255),
+	dob DATE,
+	telephone VARCHAR(10),
+	address VARCHAR(255),
+	city VARCHAR(255),
+	province ENUM('NL','PE','NS','NB','QC','ON','MB','SK','AB','BC','YT','NT','NU'),
+	postalCode VARCHAR(6),
+	citizenship VARCHAR(255),
+	email VARCHAR(255),
+	infected tinyint(1),
+	ageGroup ENUM('0-4','5-11','12-17','18-29','30-39','40-49','50-59','60-69','70-79','80+'),
+	PRIMARY KEY (SSN, EID)
+);
+
+CREATE TABLE Manager (
+	SSN VARCHAR(10),
+	EID VARCHAR(10),
+	facilityID VARCHAR(10),
+	medicare VARCHAR(10),
+	firstName VARCHAR(255),
+	lastName VARCHAR(255),
+	dob DATE,
+	telephone VARCHAR(10),
+	address VARCHAR(255),
+	city VARCHAR(255),
+	province ENUM('NL','PE','NS','NB','QC','ON','MB','SK','AB','BC','YT','NT','NU'),
+	postalCode VARCHAR(6),
+	citizenship VARCHAR(255),
+	email VARCHAR(255),
+	infected tinyint(1),
+	ageGroup ENUM('0-4','5-11','12-17','18-29','30-39','40-49','50-59','60-69','70-79','80+'),
+	PRIMARY KEY (facilityID)
+);
+
+CREATE TABLE Employment (
+	contractNum VARCHAR(10),
+	EID VARCHAR(10),
+	facilityID VARCHAR(10),
+	startDate DATE,
+	endDate DATE,
+	PRIMARY KEY (contractNum) 
+);
 
 CREATE TABLE Variant (
     VariantID VARCHAR(10),
@@ -41,6 +88,15 @@ CREATE TABLE Infection (
     FOREIGN KEY (VariantID) REFERENCES Variant(VariantID)
 );
 
+CREATE TABLE Transfer (
+transferID VARCHAR(10),
+vacTypeID VARCHAR(10),
+facilityID VARCHAR(10),
+exportFacilityID VARCHAR(10),
+numberVaccines INT,
+receptionDate DATE,
+PRIMARY KEY (transferID,vacTypeID)
+);
 /* 
 ******************************************************************************
 									QUERIES
