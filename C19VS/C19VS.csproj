@@ -10,4 +10,16 @@
     <PackageReference Include="SSH.NET" Version="2020.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Pages\Employee\" />
+    <None Remove="Pages\Manager\" />
+    <None Remove="Pages\Employment\" />
+    <None Remove="Pages\Transfer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Employee\" />
+    <Folder Include="Pages\Manager\" />
+    <Folder Include="Pages\Employment\" />
+    <Folder Include="Pages\Transfer\" />
+  </ItemGroup>
 </Project>

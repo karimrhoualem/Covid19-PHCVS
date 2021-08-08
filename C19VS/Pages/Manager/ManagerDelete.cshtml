@@ -1,0 +1,19 @@
+﻿@page "{facilityID}"
+@model C19VS.Pages.Manager.DeleteModel
+@{
+}
+
+<h1>Deleting: @Model.Manager.firstName @Model.Manager.lastName manager at @Model.Manager.facilityID</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Manager.facilityID" />
+    <input hidden asp-for="Manager.firstName" />
+    <input hidden asp-for="Manager.lastName" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.Manager.firstName @Model.Manager.lastName</button>
+            <a asp-page="/Manager/ManagerIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

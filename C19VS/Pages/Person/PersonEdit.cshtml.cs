@@ -22,9 +22,12 @@ namespace C19VS.Pages.Person
 
         public async Task<IActionResult> OnGetAsync(string medicare)
         {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add(nameof(medicare), medicare);
+
             DatabaseHelper.ConnectDatabase();
 
-            Person = (Models.Person) await DatabaseHelper.SelectRecordAsync(typeof(Models.Person), nameof(medicare), medicare);
+            Person = (Models.Person) await DatabaseHelper.SelectRecordAsync(typeof(Models.Person), dictionary);
 
             DatabaseHelper.DisconnectDatabase();
             
@@ -38,9 +41,12 @@ namespace C19VS.Pages.Person
 
         public IActionResult OnPost(Models.Person person)
         {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add(nameof(person.medicare), person.medicare);
+
             DatabaseHelper.ConnectDatabase();
 
-            bool updateSuccesful = DatabaseHelper.UpdateRecord(typeof(Models.Person), person, nameof(person.medicare), person.medicare);
+            bool updateSuccesful = DatabaseHelper.UpdateRecord(typeof(Models.Person), person, dictionary);
 
             if (updateSuccesful)
             {
