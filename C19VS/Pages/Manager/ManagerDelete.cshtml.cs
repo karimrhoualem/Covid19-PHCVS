@@ -22,9 +22,12 @@ namespace C19VS.Pages.Manager
 
         public async Task<IActionResult> OnGetAsync(string facilityID)
         {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add(nameof(facilityID), facilityID);
+
             DatabaseHelper.ConnectDatabase();
 
-            Manager = (Models.Manager) await DatabaseHelper.SelectRecordAsync(typeof(Models.Manager), nameof(facilityID), facilityID);
+            Manager = (Models.Manager) await DatabaseHelper.SelectRecordAsync(typeof(Models.Manager), dictionary);
 
             DatabaseHelper.DisconnectDatabase();
 
@@ -38,9 +41,12 @@ namespace C19VS.Pages.Manager
 
         public IActionResult OnPostAsync(Models.Manager manager)
         {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add(nameof(manager.facilityID), manager.facilityID);
+
             DatabaseHelper.ConnectDatabase();
 
-            bool deleteSuccesful = DatabaseHelper.DeleteRecord(typeof(Models.Manager), nameof(manager.facilityID), manager.facilityID);
+            bool deleteSuccesful = DatabaseHelper.DeleteRecord(typeof(Models.Manager), dictionary);
 
             if (deleteSuccesful)
             {

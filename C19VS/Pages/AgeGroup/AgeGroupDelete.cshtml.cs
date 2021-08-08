@@ -22,9 +22,12 @@ namespace C19VS.Pages.AgeGroup
 
         public async Task<IActionResult> OnGetAsync(string ageGroup)
         {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add(nameof(ageGroup), ageGroup);
+
             DatabaseHelper.ConnectDatabase();
 
-            AgeGroup = (Models.AgeGroup)await DatabaseHelper.SelectRecordAsync(typeof(Models.AgeGroup), nameof(ageGroup), ageGroup);
+            AgeGroup = (Models.AgeGroup)await DatabaseHelper.SelectRecordAsync(typeof(Models.AgeGroup), dictionary);
 
             DatabaseHelper.DisconnectDatabase();
 
@@ -38,9 +41,12 @@ namespace C19VS.Pages.AgeGroup
 
         public IActionResult OnPostAsync(Models.AgeGroup ageGroup)
         {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add(nameof(ageGroup.ageGroup), ageGroup.ageGroup);
+
             DatabaseHelper.ConnectDatabase();
 
-            bool deleteSuccesful = DatabaseHelper.DeleteRecord(typeof(Models.AgeGroup), nameof(ageGroup.ageGroup), ageGroup.ageGroup);
+            bool deleteSuccesful = DatabaseHelper.DeleteRecord(typeof(Models.AgeGroup), dictionary);
 
             if (deleteSuccesful)
             {

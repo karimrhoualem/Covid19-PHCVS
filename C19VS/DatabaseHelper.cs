@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -138,9 +139,24 @@ public class DatabaseHelper : IDatabaseHelper
         }
 	}
 
-	public async Task<object> SelectRecordAsync(Type type, string primaryKeyName, string primaryKeyValue)
+	public async Task<object> SelectRecordAsync(Type type, Dictionary<string,string> dictionary)
     {
-		string queryString = $"SELECT * FROM njc353_1.{type.Name} WHERE {primaryKeyName}='{primaryKeyValue}';";
+		string queryString = null;
+		var dictionarylength = dictionary.Count;
+		if (dictionarylength == 1)
+        {
+			var item = dictionary.First();
+			queryString = $"SELECT * FROM njc353_1.{type.Name} WHERE {item.Key}='{item.Value}';";
+		}
+		else if (dictionarylength == 2)
+        {
+			List<(string, string)> list = new List<(string, string)>();
+            foreach (var item in dictionary)
+            {
+				list.Add((item.Key, item.Value));
+            }
+			queryString = $"SELECT * FROM njc353_1.{type.Name} WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';";
+		}
 
 		using var command = new MySqlCommand(queryString, connection);
 		using var reader = await command.ExecuteReaderAsync();
@@ -160,7 +176,7 @@ public class DatabaseHelper : IDatabaseHelper
 		return null;
 	}
 
-    public bool UpdateRecord(Type type, object obj, string primaryKeyName, string primaryKeyValue)
+    public bool UpdateRecord(Type type, object obj, Dictionary<string, string> dictionary)
     {
         System.Reflection.PropertyInfo[] props = null;
 
@@ -189,8 +205,23 @@ public class DatabaseHelper : IDatabaseHelper
 		}
 
         sb.Length--;
-        sb.Append($" WHERE {primaryKeyName}='{primaryKeyValue}';");
 
+		var dictionarylength = dictionary.Count;
+		if (dictionarylength == 1)
+		{
+			var item = dictionary.First();
+			sb.Append($" WHERE {item.Key}='{item.Value}';");
+		}
+		else if (dictionarylength == 2)
+		{
+			List<(string, string)> list = new List<(string, string)>();
+			foreach (var item in dictionary)
+			{
+				list.Add((item.Key, item.Value));
+			}
+			sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
+		}
+	
         using var command = new MySqlCommand(sb.ToString(), connection);
         int rowsAffected = command.ExecuteNonQuery();
 
@@ -200,9 +231,24 @@ public class DatabaseHelper : IDatabaseHelper
         return false;
     }
 
-    public bool DeleteRecord(Type type, string primaryKeyName, string primaryKeyValue)
+    public bool DeleteRecord(Type type, Dictionary<string, string> dictionary)
     {
-        string queryString = $"DELETE FROM njc353_1.{type.Name} WHERE {primaryKeyName}='{primaryKeyValue}';";
+		string queryString = null;
+		var dictionarylength = dictionary.Count;
+		if (dictionarylength == 1)
+		{
+			var item = dictionary.First();
+			queryString = $"DELETE FROM njc353_1.{type.Name} WHERE {item.Key}='{item.Value}';";
+		}
+		else if (dictionarylength == 2)
+		{
+			List<(string, string)> list = new List<(string, string)>();
+			foreach (var item in dictionary)
+			{
+				list.Add((item.Key, item.Value));
+			}
+			queryString = $"DELETE FROM njc353_1.{type.Name} WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';";
+		}
 
         using var command = new MySqlCommand(queryString, connection);
         int rowsAffected = command.ExecuteNonQuery();
