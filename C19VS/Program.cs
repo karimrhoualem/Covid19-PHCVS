@@ -16,7 +16,7 @@ namespace C19VS
 {
     public class Program
     {
-        public static DatabaseHelper databaseHelper = new DatabaseHelper(User.GABBI);
+        public static DatabaseHelper databaseHelper = new DatabaseHelper(User.MJ);
 
 		public static void Main(string[] args)
         {
