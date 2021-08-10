@@ -95,7 +95,7 @@ facilityID VARCHAR(10),
 exportFacilityID VARCHAR(10),
 numberVaccines INT,
 receptionDate DATE,
-PRIMARY KEY (transferID,vacTypeID)
+PRIMARY KEY (transferID)
 );
 /* 
 ******************************************************************************
