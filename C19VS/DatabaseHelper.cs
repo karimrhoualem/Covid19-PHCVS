@@ -238,16 +238,19 @@ public class DatabaseHelper : IDatabaseHelper
 			{
 				list.Add((item.Key, item.Value));
 			}
-			if (list[0].Item1 == "infectionDate") {
-				list[0].Item2 = ((DateTime)list[0].Item2).ToShortDateString();
+			if (list[1].Item1 == "infectionDate") 
+			{
+				var dateArray = list[1].Item2.Split('-');
+				var subDateArray = dateArray[2].Split(' ');
+				var newDate = new DateTime(Int32.Parse(dateArray[0]), Int32.Parse(dateArray[1]), Int32.Parse(subDateArray[0])).ToShortDateString();
 
-				sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
+				sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{newDate}';");
 			}
-
-			sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
+            else
+            {
+				sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
+            }
 		}
-		 || list[1].Item1 == "infectionDate"
-
 
 		using var command = new MySqlCommand(sb.ToString(), connection);
         int rowsAffected = command.ExecuteNonQuery();
