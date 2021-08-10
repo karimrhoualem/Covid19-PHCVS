@@ -7,7 +7,7 @@ namespace C19VS.Models
 {
     public class Vaccine
     {
-        public string vactypeID { get; set; }
+        public string vacTypeID { get; set; }
         public string vacName { get; set; }
         public int dosesNeeded { get; set; }
         public string approvalStatus { get; set; }
@@ -23,7 +23,7 @@ namespace C19VS.Models
         {
             var vaccine = obj as Vaccine;
 
-            this.vactypeID = vaccine.vactypeID;
+            this.vacTypeID = vaccine.vacTypeID;
             this.vacName = vaccine.vacName;
             this.dosesNeeded = vaccine.dosesNeeded;
             this.approvalStatus = vaccine.approvalStatus;
@@ -34,7 +34,7 @@ namespace C19VS.Models
 
         public Vaccine(object[] obj)
         {
-            vactypeID = obj[0] as string;
+            vacTypeID = obj[0] as string;
             vacName = obj[1] as string;
             dosesNeeded = (int)obj[2];
             approvalStatus = obj[3] as string;

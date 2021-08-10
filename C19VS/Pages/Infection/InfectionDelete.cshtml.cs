@@ -22,9 +22,10 @@ namespace C19VS.Pages.Infection
 
         public async Task<IActionResult> OnGetAsync(string SSN, DateTime infectionDate)
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add(nameof(SSN), infectionDate.ToString());
-           
+            Dictionary<string, string> dictionary = new Dictionary<string, string>(); // MAYBE CHANGE STRING INTO DATETIME
+            dictionary.Add(nameof(SSN), SSN);
+            dictionary.Add(nameof(infectionDate), infectionDate.ToString());
+
             DatabaseHelper.ConnectDatabase();
 
             Infection = (Models.Infection) await DatabaseHelper.SelectRecordAsync(typeof(Models.Infection), dictionary);
@@ -39,10 +40,11 @@ namespace C19VS.Pages.Infection
             return Page();
         }
 
-        public IActionResult OnPostAsync(Models.Infection infection)
+        public IActionResult OnPostAsync(Models.Infection infection) // IF CHANGE ABOVE CHANGE HERE TOO
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add(nameof(infection.SSN), infection.infectionDate.ToString());
+            dictionary.Add(nameof(infection.SSN), infection.SSN); 
+            dictionary.Add(nameof(infection.infectionDate), infection.infectionDate.ToString());
 
             DatabaseHelper.ConnectDatabase();
 

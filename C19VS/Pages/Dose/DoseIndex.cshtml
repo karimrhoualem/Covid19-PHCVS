@@ -1,5 +1,5 @@
 ﻿@page
-@model C19VS.Pages.Infection.IndexModel
+@model C19VS.Pages.Dose.IndexModel
 @{
     ViewData["Title"] = Model.TABLE_NAME;
 }
@@ -7,7 +7,7 @@
 <div>
     <h1>Table: @Model.TABLE_NAME</h1>
     <hr />
-    <a asp-page="/Infection/InfectionInsert" class="btn btn-primary">Insert New @Model.TABLE_NAME</a>
+    <a asp-page="/Dose/DoseInsert" class="btn btn-primary">Insert New @Model.TABLE_NAME</a>
     <hr />
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -29,8 +29,8 @@
                     }
                     <td>
                         <span style="display: inline;">
-                            <a asp-page="/Infection/InfectionEdit" asp-route-infectionID="@row[0]" asp-route-infectionDate="@row[1]"class="btn btn-primary">Edit</a>
-                            <a asp-page="/Infection/InfectionDelete" asp-route-infectionID="@row[0]" asp-route-infectionDate="@row[1]" class="btn btn-danger">Delete</a>
+                            <a asp-page="/Dose/DoseEdit" asp-route-SSN="@row[0]" asp-route-doseNumber="@row[1]" class="btn btn-primary">Edit</a>
+                            <a asp-page="/Dose/DoseDelete" asp-route-SSN="@row[0]" asp-route-doseNumber="@row[1]" class="btn btn-danger">Delete</a>
                         </span>
                     </td>
                 </tr>

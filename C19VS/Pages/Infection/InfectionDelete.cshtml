@@ -1,4 +1,4 @@
-﻿@page "{SSN}" // HOW TO WRITE FOR 2.....forgot
+﻿@page "{SSN}/{InfectionDate}"
 @model C19VS.Pages.Infection.DeleteModel
 @{
 }
@@ -8,7 +8,6 @@
 <form method="post" class="mt-3">
     <input hidden asp-for="Infection.SSN" />
     <input hidden asp-for="Infection.infectionDate" />
-    <input hidden asp-for="Infection.variantID" />
 
     <div class="form-group row">
         <div class="col-sm-10">

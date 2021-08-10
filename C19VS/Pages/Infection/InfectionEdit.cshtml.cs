@@ -23,7 +23,8 @@ namespace C19VS.Pages.Infection
         public async Task<IActionResult> OnGetAsync(string SSN, DateTime infectionDate) // 2 ATTRIBUTES
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add(nameof(SSN), infectionDate.ToString());
+            dictionary.Add(nameof(SSN), SSN);
+            dictionary.Add(nameof(infectionDate), infectionDate.ToString());
 
             DatabaseHelper.ConnectDatabase();
 
@@ -42,7 +43,8 @@ namespace C19VS.Pages.Infection
         public IActionResult OnPost(Models.Infection infection)
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add(nameof(infection.SSN), infection.infectionDate.ToString());
+            dictionary.Add(nameof(infection.SSN), infection.SSN);
+            dictionary.Add(nameof(infection.infectionDate), infection.infectionDate.ToString());
 
             DatabaseHelper.ConnectDatabase();
 
