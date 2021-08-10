@@ -1,0 +1,18 @@
+﻿@page "{SNN}/{EID}"
+@model C19VS.Pages.Employees.DeleteModel
+@{
+}
+
+<h1>Deleting employee: @Model.Employees.firstName @Model.Employees.lastName employee @Model.Employees.EID</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Employees.SSN" />
+    <input hidden asp-for="Employees.EID" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete employee @Model.Employees.EID</button>
+            <a asp-page="/Employees/EmployeesIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>
