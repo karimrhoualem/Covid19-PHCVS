@@ -1,0 +1,17 @@
+﻿@page "{contractNum}"
+@model C19VS.Pages.Employment.DeleteModel
+@{
+}
+
+<h1>Deleting employment contract: @Model.Employment.contractNum</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Employment.contractNum" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete employment contract @Model.Employment.contractNum</button>
+            <a asp-page="/Employment/EmploymentIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

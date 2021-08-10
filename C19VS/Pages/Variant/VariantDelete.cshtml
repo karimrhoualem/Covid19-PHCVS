@@ -1,0 +1,18 @@
+﻿@page "{variantID}" 
+@model C19VS.Pages.Variant.DeleteModel
+@{
+}
+
+<h1>Deleting: @Model.Variant.variantID  @Model.Variant.variantName</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Variant.variantID" />
+    <input hidden asp-for="Variant.variantName" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.Variant.variantID @Model.Variant.variantName</button>
+            <a asp-page="/Variant/VariantIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

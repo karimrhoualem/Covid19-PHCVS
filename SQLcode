@@ -61,7 +61,7 @@ CREATE TABLE Vaccine (
     vacTypeID VARCHAR(10),
     vacName VARCHAR(20),
     DosesNeeded INT,
-	ApprovalStatus ENUM ('approved', 'not approved'),
+    ApprovalStatus ENUM ('approved', 'not approved'),
     ApprovalDate DATE,
     SuspensionDate Date,
     primary key(vacTypeID)
@@ -95,8 +95,8 @@ CREATE TABLE Transfer (
 	exportFacilityID VARCHAR(10),
 	numberVaccines INT,
 	receptionDate DATE,
-	PRIMARY KEY (transferID,vacTypeID)
-);	
+	PRIMARY KEY (transferID)
+);
 
 CREATE TABLE Province (
 	province ENUM('NL','PE','NS','NB','QC','ON','MB','SK','AB','BC','YT','NT','NU'),

@@ -1,0 +1,18 @@
+﻿@page "{SSN}/{infectionDate}"
+@model C19VS.Pages.Infection.DeleteModel
+@{
+}
+
+<h1>Deleting: @Model.Infection.SSN infection on @Model.Infection.infectionDate of variant @Model.Infection.variantID</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Infection.SSN" />
+    <input hidden asp-for="Infection.infectionDate" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.Infection.SSN @Model.Infection.infectionDate</button>
+            <a asp-page="/Infection/InfectionIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

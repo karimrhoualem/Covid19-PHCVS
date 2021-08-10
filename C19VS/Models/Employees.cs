@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace C19VS.Models
 {
-    public class Employee
+    public class Employees
     {
         public string SSN { get; set; }
         public string EID { get; set; }
@@ -24,33 +24,33 @@ namespace C19VS.Models
         public string ageGroup { get; set; }
       
 
-        public Employee()
+        public Employees()
         {
 
         }
 
-        public Employee(object obj)
+        public Employees(object obj)
         {
-            var employee = obj as Employee;
+            var employees = obj as Employees;
 
-            this.SSN = employee.SSN;
-            this.EID = employee.EID;
-            this.medicare = employee.medicare;
-            this.firstName = employee.firstName;
-            this.lastName = employee.lastName;
-            this.dob = employee.dob;
-            this.telephone = employee.telephone;
-            this.address = employee.address;
-            this.city = employee.city;
-            this.province = employee.province;
-            this.postalCode = employee.postalCode;
-            this.citizenship = employee.citizenship;
-            this.email = employee.email;
-            this.infected = employee.infected;
-            this.ageGroup = employee.ageGroup;
+            this.SSN = employees.SSN;
+            this.EID = employees.EID;
+            this.medicare = employees.medicare;
+            this.firstName = employees.firstName;
+            this.lastName = employees.lastName;
+            this.dob = employees.dob;
+            this.telephone = employees.telephone;
+            this.address = employees.address;
+            this.city = employees.city;
+            this.province = employees.province;
+            this.postalCode = employees.postalCode;
+            this.citizenship = employees.citizenship;
+            this.email = employees.email;
+            this.infected = employees.infected;
+            this.ageGroup = employees.ageGroup;
         }
 
-        public Employee(object[] obj)
+        public Employees(object[] obj)
         {
             SSN = obj[0] as string;
             EID = obj[1] as string;
