@@ -61,7 +61,7 @@ CREATE TABLE Vaccine (
     vacTypeID VARCHAR(10),
     vacName VARCHAR(20),
     DosesNeeded INT,
-	ApprovalStatus ENUM ('approved', 'not approved'),
+    ApprovalStatus ENUM ('approved', 'not approved'),
     ApprovalDate DATE,
     SuspensionDate Date,
     primary key(vacTypeID)
