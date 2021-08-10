@@ -97,8 +97,9 @@ public class DatabaseHelper : IDatabaseHelper
 		}
     }
 
+
 	public async Task<List<object[]>> SelectAllRecords(string tableName)
-    {
+	{
 		if (connection.State == ConnectionState.Open)
 		{
 			using var command = new MySqlCommand($"SELECT * FROM njc353_1.{tableName};", connection);
@@ -113,56 +114,56 @@ public class DatabaseHelper : IDatabaseHelper
 				var count = reader.FieldCount;
 				object[] columnNames = new object[count];
 
-                if (headerCounter == 0)
-                {
-                    for (int i = 0; i < count; i++)
-                    {
-                        columnNames[i] = reader.GetName(i);
-                    }
+				if (headerCounter == 0)
+				{
+					for (int i = 0; i < count; i++)
+					{
+						columnNames[i] = reader.GetName(i);
+					}
 
-                    tableList.Add(columnNames);
+					tableList.Add(columnNames);
 
 					headerCounter++;
-                }
+				}
 
 				object[] rowValues = new object[count];
 				reader.GetValues(rowValues);
 
 				for (int i = 0; i < rowValues.Length; i++)
 				{
-                    if (rowValues[i].GetType() == typeof(DateTime))
-                    {
+					if (rowValues[i].GetType() == typeof(DateTime))
+					{
 						rowValues[i] = ((DateTime)rowValues[i]).ToShortDateString();
-                    }
-                }
+					}
+				}
 
 				tableList.Add(rowValues);
 			}
 
 			return tableList;
 		}
-        else
-        {
+		else
+		{
 			return null;
-        }
+		}
 	}
 
-	public async Task<object> SelectRecordAsync(Type type, Dictionary<string,string> dictionary)
-    {
+	public async Task<object> SelectRecordAsync(Type type, Dictionary<string, string> dictionary)
+	{
 		string queryString = null;
 		var dictionarylength = dictionary.Count;
 		if (dictionarylength == 1)
-        {
+		{
 			var item = dictionary.First();
 			queryString = $"SELECT * FROM njc353_1.{type.Name} WHERE {item.Key}='{item.Value}';";
 		}
 		else if (dictionarylength == 2)
-        {
+		{
 			List<(string, string)> list = new List<(string, string)>();
-            foreach (var item in dictionary)
-            {
+			foreach (var item in dictionary)
+			{
 				list.Add((item.Key, item.Value));
-            }
+			}
 			queryString = $"SELECT * FROM njc353_1.{type.Name} WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';";
 		}
 
@@ -176,7 +177,7 @@ public class DatabaseHelper : IDatabaseHelper
 			object[] rowValues = new object[count];
 			reader.GetValues(rowValues);
 
-			var objInstance = Activator.CreateInstance(type, new object[] { rowValues } );
+			var objInstance = Activator.CreateInstance(type, new object[] { rowValues });
 
 			return objInstance;
 		}
@@ -184,7 +185,8 @@ public class DatabaseHelper : IDatabaseHelper
 		return null;
 	}
 
-    public bool UpdateRecord(Type type, object obj, Dictionary<string, string> dictionary)
+
+	public bool UpdateRecord(Type type, object obj, Dictionary<string, string> dictionary)
     {
         System.Reflection.PropertyInfo[] props = null;
 
@@ -208,6 +210,15 @@ public class DatabaseHelper : IDatabaseHelper
 			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
 
 			//TODO: Add other exceptions below.
+			//Exception for Dose
+			if (name == "doseDate") value = ((DateTime)value).ToShortDateString();
+
+			//Exception for Infection
+			if (name == "infectionDate") value = ((DateTime)value).ToShortDateString();
+
+			//Exception for Vaccine
+			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
+			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
 
 			sb.Append($"{name}='{value}',");
 		}
@@ -227,10 +238,21 @@ public class DatabaseHelper : IDatabaseHelper
 			{
 				list.Add((item.Key, item.Value));
 			}
-			sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
+			if (list[1].Item1 == "infectionDate") 
+			{
+				var dateArray = list[1].Item2.Split('-');
+				var subDateArray = dateArray[2].Split(' ');
+				var newDate = new DateTime(Int32.Parse(dateArray[0]), Int32.Parse(dateArray[1]), Int32.Parse(subDateArray[0])).ToShortDateString();
+
+				sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{newDate}';");
+			}
+            else
+            {
+				sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
+            }
 		}
-	
-        using var command = new MySqlCommand(sb.ToString(), connection);
+
+		using var command = new MySqlCommand(sb.ToString(), connection);
         int rowsAffected = command.ExecuteNonQuery();
 
         if (rowsAffected == 1)
@@ -294,6 +316,15 @@ public class DatabaseHelper : IDatabaseHelper
 
 			//TODO: Add other exceptions below.
 
+			//Exception for Dose
+			if (name == "doseDate") value = ((DateTime)value).ToShortDateString();
+
+			//Exception for Infection
+			if (name == "infectionDate") value = ((DateTime)value).ToShortDateString();
+
+			//Exception for Vaccine
+			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
+			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
 			sb.Append($"'{value}',");
 		}
 
