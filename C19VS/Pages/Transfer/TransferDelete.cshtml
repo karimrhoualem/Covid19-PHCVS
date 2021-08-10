@@ -1,0 +1,17 @@
+﻿@page "{transferID}"
+@model C19VS.Pages.Transfer.DeleteModel
+@{
+}
+
+<h1>Deleting vaccine transfer: @Model.Transfer.transferID</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Transfer.transferID" />
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete vaccine transfer @Model.Transfer.transferID</button>
+            <a asp-page="/Transfer/TransferIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

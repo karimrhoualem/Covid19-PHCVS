@@ -17,7 +17,7 @@
     <None Remove="Pages\Transfer\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Employee\" />
+    <Folder Include="Pages\Employees\" />
     <Folder Include="Pages\Manager\" />
     <Folder Include="Pages\Employment\" />
     <Folder Include="Pages\Transfer\" />

@@ -11,7 +11,7 @@ namespace C19VS.Models
         public string vacTypeID { get; set; }
         public string facilityID { get; set; }
         public string exportFacilityID { get; set; }
-        public int numberVaccine { get; set; }
+        public int numberVaccines { get; set; }
         public DateTime receptionDate { get; set; }
       
 
@@ -28,7 +28,7 @@ namespace C19VS.Models
             this.vacTypeID = transfer.vacTypeID;
             this.facilityID = transfer.facilityID;
             this.exportFacilityID = transfer.exportFacilityID;
-            this.numberVaccine = transfer.numberVaccine;
+            this.numberVaccines = transfer.numberVaccines;
             this.receptionDate = transfer.receptionDate;
         }
 
@@ -38,7 +38,7 @@ namespace C19VS.Models
             vacTypeID = obj[1] as string;
             facilityID = obj[2] as string;
             exportFacilityID = obj[3] as string;
-            numberVaccine = (int)obj[4];
+            numberVaccines = (int)obj[4];
             receptionDate = (DateTime)obj[5];
         }
     }
