@@ -20,11 +20,11 @@ namespace C19VS.Pages.Person
             DatabaseHelper = (DatabaseHelper)databaseHelper;
         }
 
-        public async Task<IActionResult> OnGetAsync(string medicare)
+        public async Task<IActionResult> OnGetAsync(string SSN)
         {
 
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add(nameof(medicare), medicare);
+            dictionary.Add(nameof(SSN), SSN);
 
             DatabaseHelper.ConnectDatabase();
 
@@ -43,7 +43,7 @@ namespace C19VS.Pages.Person
         public IActionResult OnPostAsync(Models.Person person)
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add(nameof(person.medicare), person.medicare);
+            dictionary.Add(nameof(person.SSN), person.SSN);
 
             DatabaseHelper.ConnectDatabase();
 

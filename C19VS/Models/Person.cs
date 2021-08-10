@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace C19VS.Models
 {
     public class Person
     {
+        public string SSN { get; set; }
         public string medicare { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -20,7 +22,6 @@ namespace C19VS.Models
         public string email { get; set; }
         public bool infected { get; set; }
         public string ageGroup { get; set; }
-        public string SSN { get; set; }
 
         public Person()
         {
@@ -31,6 +32,7 @@ namespace C19VS.Models
         {
             var person = obj as Person;
 
+            this.SSN = person.SSN;
             this.medicare = person.medicare;
             this.firstName = person.firstName;
             this.lastName = person.lastName;
@@ -44,25 +46,24 @@ namespace C19VS.Models
             this.email = person.email;
             this.infected = person.infected;
             this.ageGroup = person.ageGroup;
-            this.SSN = person.SSN;
         }
 
         public Person(object[] obj)
         {
-            medicare = obj[0] as string;
-            firstName = obj[1] as string;
-            lastName = obj[2] as string;
-            dob = (DateTime)obj[3];
-            telephone = obj[4] as string;
-            address = obj[5] as string;
-            city = obj[6] as string;
-            province = obj[7] as string;
-            postalCode = obj[8] as string;
-            citizenship = obj[9] as string;
-            email = obj[10] as string;
-            infected = (bool)obj[11];
-            ageGroup = obj[12] as string;
-            SSN = obj[13] as string;
+            SSN = obj[0] as string;
+            medicare = obj[1] as string;
+            firstName = obj[2] as string;
+            lastName = obj[3] as string;
+            dob = (DateTime)obj[4];
+            telephone = obj[5] as string;
+            address = obj[6] as string;
+            city = obj[7] as string;
+            province = obj[8] as string;
+            postalCode = obj[9] as string;
+            citizenship = obj[10] as string;
+            email = obj[11] as string;
+            infected = (bool)obj[12];
+            ageGroup = obj[13] as string;
         }
     }
 }

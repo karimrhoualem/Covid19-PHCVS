@@ -1,4 +1,4 @@
-﻿@page "{medicare}"
+﻿@page "{SSN}"
 @model C19VS.Pages.Person.DeleteModel
 @{
 }
@@ -6,7 +6,7 @@
 <h1>Deleting: @Model.Person.firstName @Model.Person.lastName</h1>
 
 <form method="post" class="mt-3">
-    <input hidden asp-for="Person.medicare" />
+    <input hidden asp-for="Person.SSN" />
     <input hidden asp-for="Person.firstName" />
     <input hidden asp-for="Person.lastName" />
 

@@ -53,7 +53,7 @@ public class DatabaseHelper : IDatabaseHelper
 		if (sshClient.IsConnected)
 		{
 			Console.WriteLine("SshClient connection open.");
-		}
+        }
 	}
 
 	public void DisconnectSshClient()
@@ -127,6 +127,14 @@ public class DatabaseHelper : IDatabaseHelper
 
 				object[] rowValues = new object[count];
 				reader.GetValues(rowValues);
+
+				for (int i = 0; i < rowValues.Length; i++)
+				{
+                    if (rowValues[i].GetType() == typeof(DateTime))
+                    {
+						rowValues[i] = ((DateTime)rowValues[i]).ToShortDateString();
+                    }
+                }
 
 				tableList.Add(rowValues);
 			}
