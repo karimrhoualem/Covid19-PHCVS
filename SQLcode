@@ -89,14 +89,22 @@ CREATE TABLE Infection (
 );
 
 CREATE TABLE Transfer (
-transferID VARCHAR(10),
-vacTypeID VARCHAR(10),
-facilityID VARCHAR(10),
-exportFacilityID VARCHAR(10),
-numberVaccines INT,
-receptionDate DATE,
-PRIMARY KEY (transferID)
+	transferID VARCHAR(10),
+	vacTypeID VARCHAR(10),
+	facilityID VARCHAR(10),
+	exportFacilityID VARCHAR(10),
+	numberVaccines INT,
+	receptionDate DATE,
+	PRIMARY KEY (transferID)
 );
+
+CREATE TABLE Province (
+	province ENUM('NL','PE','NS','NB','QC','ON','MB','SK','AB','BC','YT','NT','NU'),
+	ageGroup ENUM('0-4','5-11','12-17','18-29','30-39','40-49','50-59','60-69','70-79','80+'),
+	PRIMARY KEY (province),
+	FOREIGN KEY (ageGroup) REFERENCES AgeGroup(ageGroup)
+);
+
 /* 
 ******************************************************************************
 									QUERIES
