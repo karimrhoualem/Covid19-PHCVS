@@ -11,7 +11,7 @@ namespace C19VS.Pages.Transfer
 {
     public class IndexModel : PageModel
     {
-        public string TABLE_NAME = "Tranfer";
+        public string TABLE_NAME = "Transfer";
         public List<object[]> tableList;
         
         private DatabaseHelper DatabaseHelper;
