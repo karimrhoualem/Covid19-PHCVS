@@ -20,7 +20,7 @@ namespace C19VS.Pages.Infection
             DatabaseHelper = (DatabaseHelper)databaseHelper;
         }
 
-        public async Task<IActionResult> OnGetAsync(string SSN, DateTime infectionDate) // 2 ATTRIBUTES
+        public async Task<IActionResult> OnGetAsync(string SSN, string infectionDate) // 2 ATTRIBUTES
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add(nameof(SSN), SSN);

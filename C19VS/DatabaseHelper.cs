@@ -201,6 +201,10 @@ public class DatabaseHelper : IDatabaseHelper
 
 			//TODO: Add other exceptions below.
 
+			// Exceptions for Vaccine
+			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
+			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
+
 			sb.Append($"{name}='{value}',");
 		}
 
@@ -286,6 +290,9 @@ public class DatabaseHelper : IDatabaseHelper
 
 			//TODO: Add other exceptions below.
 
+			//Exception for Vaccine
+			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
+			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
 			sb.Append($"'{value}',");
 		}
 

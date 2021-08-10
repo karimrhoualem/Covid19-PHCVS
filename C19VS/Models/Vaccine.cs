@@ -39,7 +39,7 @@ namespace C19VS.Models
             dosesNeeded = (int)obj[2];
             approvalStatus = obj[3] as string;
             approvalDate = (DateTime)obj[4];
-            suspensionDate = (DateTime)obj[5];
+            suspensionDate = Convert.IsDBNull(obj[5]) ? new DateTime(1970-01-01):(DateTime)obj[5];
 
         }
     }
