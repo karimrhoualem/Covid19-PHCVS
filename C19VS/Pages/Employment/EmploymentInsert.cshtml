@@ -14,28 +14,28 @@
     <div class="form-group row">
         <label asp-for="Employment.EID">Employee ID</label>
         <div class="col-sm-10">
-            <input asp-for="Employment.EID" placeholder="@Model.Employment.EID" />
+            <input asp-for="Employment.EID" />
         </div>
     </div>
 
     <div class="form-group row">
         <label asp-for="Employment.facilityID">Facility ID</label>
         <div class="col-sm-10">
-            <input asp-for="Employment.facilityID" placeholder="@Model.Employment.facilityID" />
+            <input asp-for="Employment.facilityID" />
         </div>
     </div>
 
     <div class="form-group row">
         <label asp-for="Employment.startDate">Start Date</label>
         <div class="col-sm-10">
-            <input asp-for="Employment.startDate" placeholder="@Model.Employment.startDate.ToString()" />
+            <input asp-for="Employment.startDate" type="date"/>
         </div>
     </div>
 
     <div class="form-group row">
         <label asp-for="Employment.endDate">End Date</label>
         <div class="col-sm-10">
-            <input asp-for="Employment.endDate" placeholder="@Model.Employment.endDate.ToString()" />
+            <input asp-for="Employment.endDate" type="date"/>
         </div>
     </div>
 

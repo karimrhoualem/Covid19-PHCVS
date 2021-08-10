@@ -98,7 +98,7 @@ public class DatabaseHelper : IDatabaseHelper
     }
 
 	public async Task<List<object[]>> SelectAllRecords(string tableName)
-    {
+	{
 		if (connection.State == ConnectionState.Open)
 		{
 			using var command = new MySqlCommand($"SELECT * FROM njc353_1.{tableName};", connection);
@@ -113,30 +113,38 @@ public class DatabaseHelper : IDatabaseHelper
 				var count = reader.FieldCount;
 				object[] columnNames = new object[count];
 
-                if (headerCounter == 0)
-                {
-                    for (int i = 0; i < count; i++)
-                    {
-                        columnNames[i] = reader.GetName(i);
-                    }
+				if (headerCounter == 0)
+				{
+					for (int i = 0; i < count; i++)
+					{
+						columnNames[i] = reader.GetName(i);
+					}
 
-                    tableList.Add(columnNames);
+					tableList.Add(columnNames);
 
 					headerCounter++;
-                }
+				}
 
 				object[] rowValues = new object[count];
 				reader.GetValues(rowValues);
+
+				for (int i = 0; i < rowValues.Length; i++)
+				{
+					if (rowValues[i].GetType() == typeof(DateTime))
+					{
+						rowValues[i] = ((DateTime)rowValues[i]).ToShortDateString();
+					}
+				}
 
 				tableList.Add(rowValues);
 			}
 
 			return tableList;
 		}
-        else
-        {
+		else
+		{
 			return null;
-        }
+		}
 	}
 
 	public async Task<object> SelectRecordAsync(Type type, Dictionary<string,string> dictionary)

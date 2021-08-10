@@ -27,11 +27,11 @@ namespace C19VS.Pages.Transfer
 
             if (insertSuccessful)
             {
-                Console.WriteLine($"[{TASK_NAME}] vaccine transfer {transfer.transferID} of {transfer.vacTypeID} inserted successfully.");
+                Console.WriteLine($"[{TASK_NAME}] vaccine transfer {transfer.transferID} inserted successfully.");
             }
             else
             {
-                Console.WriteLine($"[{TASK_NAME}] Error inserting vaccine transfer {transfer.transferID} of {transfer.vacTypeID}.");
+                Console.WriteLine($"[{TASK_NAME}] Error inserting vaccine transfer {transfer.transferID}.");
             }
 
             DatabaseHelper.DisconnectDatabase();

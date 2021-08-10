@@ -1,13 +1,12 @@
-﻿@page "{transferID}/{vacTypeID}"
+﻿@page "{transferID}"
 @model C19VS.Pages.Transfer.EditModel
 @{
 }
 
-<h1>Editing vaccine transfer: @Model.Transfer.transferID of @Model.Transfer.vacTypeID</h1>
+<h1>Editing vaccine transfer: @Model.Transfer.transferID</h1>
 
 <form method="post" class="mt-3">
     <input hidden asp-for="Transfer.transferID" />
-    <input hidden asp-for="Transfer.vacTypeID" />
 
     <div class="form-group row">
         <label asp-for="Transfer.transferID">Transfer ID</label>

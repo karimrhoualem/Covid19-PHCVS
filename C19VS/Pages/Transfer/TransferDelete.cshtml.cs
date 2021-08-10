@@ -20,11 +20,10 @@ namespace C19VS.Pages.Transfer
             DatabaseHelper = (DatabaseHelper)databaseHelper;
         }
 
-        public async Task<IActionResult> OnGetAsync(string transferID, string vacTypeID)
+        public async Task<IActionResult> OnGetAsync(string transferID)
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add(nameof(transferID), vacTypeID);
-            dictionary.Add(nameof(transferID), vacTypeID);
+            dictionary.Add(nameof(transferID), transferID);
 
             DatabaseHelper.ConnectDatabase();
 
@@ -44,7 +43,6 @@ namespace C19VS.Pages.Transfer
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add(nameof(transfer.transferID), transfer.transferID);
-            dictionary.Add(nameof(transfer.vacTypeID), transfer.vacTypeID);
 
             DatabaseHelper.ConnectDatabase();
 
@@ -52,11 +50,11 @@ namespace C19VS.Pages.Transfer
 
             if (deleteSuccesful)
             {
-                Console.WriteLine($"[{TASK_NAME}] vaccine transfer {transfer.transferID} of {transfer.vacTypeID} deleted successfully.");
+                Console.WriteLine($"[{TASK_NAME}] vaccine transfer {transfer.transferID} deleted successfully.");
             }
             else
             {
-                Console.WriteLine($"[{TASK_NAME}] Error deleting vaccine transfer {transfer.transferID} of {transfer.vacTypeID}.");
+                Console.WriteLine($"[{TASK_NAME}] Error deleting vaccine transfer {transfer.transferID}.");
             }
 
             DatabaseHelper.DisconnectDatabase();
