@@ -5,49 +5,49 @@
 
 <form method="post" class="mt-3">
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Transfer.transferID">Transfer ID</label>
         <div class="col-sm-10">
             <input asp-for="Transfer.transferID"/>
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Transfer.vacTypeID">Vaccination Type ID</label>
         <div class="col-sm-10">
             <input asp-for="Transfer.vacTypeID"/>
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Transfer.facilityID">Receiving Facility ID</label>
         <div class="col-sm-10">
             <input asp-for="Transfer.facilityID"/>
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Transfer.exportFacilityID">Export Facility ID</label>
         <div class="col-sm-10">
             <input asp-for="Transfer.exportFacilityID"/>
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Transfer.numberVaccines">Number of Vaccines</label>
         <div class="col-sm-10">
             <input asp-for="Transfer.numberVaccines"/>
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Transfer.receptionDate">Reception Date</label>
         <div class="col-sm-10">
             <input asp-for="Transfer.receptionDate" type="date" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Save</button>
             <a asp-page="/Transfer/TransferIndex" class="btn btn-primary">Cancel</a>
