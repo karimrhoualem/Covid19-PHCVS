@@ -1,0 +1,18 @@
+﻿@page "{province}"
+@model C19VS.Pages.Province.DeleteModel
+@{
+}
+
+<h1>Deleting: @Model.Province.province</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Province.province" />
+
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.Province.province</button>
+            <a asp-page="/Province/ProvinceIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

@@ -219,7 +219,6 @@ public class DatabaseHelper : IDatabaseHelper
 			//Exception for Vaccine
 			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
 			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
-			sb.Append($"'{value}',");
 
 			sb.Append($"{name}='{value}',");
 		}
@@ -239,10 +238,18 @@ public class DatabaseHelper : IDatabaseHelper
 			{
 				list.Add((item.Key, item.Value));
 			}
+			if (list[0].Item1 == "infectionDate") {
+				list[0].Item2 = ((DateTime)list[0].Item2).ToShortDateString();
+
+				sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
+			}
+
 			sb.Append($" WHERE {list[0].Item1}='{list[0].Item2}' AND {list[1].Item1}='{list[1].Item2}';");
 		}
-	
-        using var command = new MySqlCommand(sb.ToString(), connection);
+		 || list[1].Item1 == "infectionDate"
+
+
+		using var command = new MySqlCommand(sb.ToString(), connection);
         int rowsAffected = command.ExecuteNonQuery();
 
         if (rowsAffected == 1)

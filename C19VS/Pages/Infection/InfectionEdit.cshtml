@@ -3,7 +3,7 @@
 @{
 }
 
-<h1>Editing Infection:of person @Model.Infection.SSN on @Model.Infection.infectionDate </h1>
+<h1>Editing Infection:of person @Model.Infection.SSN on @Model.Infection.infectionDate.ToShortDateString() </h1>
 
 <form method="post" class="mt-3">
     <input hidden asp-for="Infection.SSN" />
