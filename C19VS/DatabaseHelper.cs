@@ -210,10 +210,16 @@ public class DatabaseHelper : IDatabaseHelper
 			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
 
 			//TODO: Add other exceptions below.
+			//Exception for Dose
+			if (name == "doseDate") value = ((DateTime)value).ToShortDateString();
 
-			// Exceptions for Vaccine
+			//Exception for Infection
+			if (name == "infectionDate") value = ((DateTime)value).ToShortDateString();
+
+			//Exception for Vaccine
 			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
 			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
+			sb.Append($"'{value}',");
 
 			sb.Append($"{name}='{value}',");
 		}
@@ -299,6 +305,12 @@ public class DatabaseHelper : IDatabaseHelper
 			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
 
 			//TODO: Add other exceptions below.
+
+			//Exception for Dose
+			if (name == "doseDate") value = ((DateTime)value).ToShortDateString();
+
+			//Exception for Infection
+			if (name == "infectionDate") value = ((DateTime)value).ToShortDateString();
 
 			//Exception for Vaccine
 			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
