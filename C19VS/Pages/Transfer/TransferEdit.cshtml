@@ -1,0 +1,61 @@
+﻿@page "{transferID}/{vacTypeID}"
+@model C19VS.Pages.Transfer.EditModel
+@{
+}
+
+<h1>Editing vaccine transfer: @Model.Transfer.transferID of @Model.Transfer.vacTypeID</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Transfer.transferID" />
+    <input hidden asp-for="Transfer.vacTypeID" />
+
+    <div class="form-group row">
+        <label asp-for="Transfer.transferID">Transfer ID</label>
+        <div class="col-sm-10">
+            <input asp-for="Transfer.transferID" placeholder="@Model.Transfer.transferID" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Transfer.vacTypeID">Vaccination Type ID</label>
+        <div class="col-sm-10">
+            <input asp-for="Transfer.vacTypeID" placeholder="@Model.Transfer.vacTypeID" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Transfer.facilityID">Receiving Facility ID</label>
+        <div class="col-sm-10">
+            <input asp-for="Transfer.facilityID" placeholder="@Model.Transfer.facilityID" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Transfer.exportFacilityID">Export Facility ID</label>
+        <div class="col-sm-10">
+            <input asp-for="Transfer.exportFacilityID" placeholder="@Model.Transfer.exportFacilityID" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Transfer.numberVaccines">Number of Vaccines</label>
+        <div class="col-sm-10">
+            <input asp-for="Transfer.numberVaccines" placeholder="@Model.Transfer.numberVaccines.ToString()" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Transfer.receptionDate">Reception Date</label>
+        <div class="col-sm-10">
+            <input asp-for="Transfer.receptionDate" placeholder="@Model.Transfer.receptionDate.ToString()" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="/Transfer/TransferIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>
+

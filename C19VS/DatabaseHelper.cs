@@ -199,6 +199,13 @@ public class DatabaseHelper : IDatabaseHelper
 			// Exceptions for AgeGroup
 			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
 
+			// Exceptions for Employment
+			if (name == "startDate") value = ((DateTime)value).ToShortDateString();
+			if (name == "endDate") value = ((DateTime)value).ToShortDateString();
+
+			// Exceptions for Transfer
+			if (name == "receptionDate") value = ((DateTime)value).ToShortDateString();
+
 			//TODO: Add other exceptions below.
 
 			sb.Append($"{name}='{value}',");
