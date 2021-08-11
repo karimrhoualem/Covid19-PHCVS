@@ -52,41 +52,42 @@ CREATE TABLE Employment (
 );
 
 CREATE TABLE Variant (
-    VariantID VARCHAR(10),
-    variantType VARCHAR(20),
-    primary key(VariantID)
+    variantID VARCHAR(10),
+    variantName VARCHAR(20),
+    primary key(variantID)
 );
 
 CREATE TABLE Vaccine (
     vacTypeID VARCHAR(10),
     vacName VARCHAR(20),
-    DosesNeeded INT,
-    ApprovalStatus ENUM ('approved', 'not approved'),
-    ApprovalDate DATE,
-    SuspensionDate Date,
+    dosesNeeded INT,
+	approvalStatus ENUM ('approved', 'not approved'),
+    approvalDate DATE,
+    suspensionDate Date,
     primary key(vacTypeID)
 );
 
 CREATE TABLE Doses (
     SSN VARCHAR(10),
-    DoseNumber INT,
-    DoseDate DATE,
-    VacTypeID VARCHAR(10),
-    FacilityID VARCHAR(10),
+    doseNumber INT,
+    doseDate DATE,
+    vacTypeID VARCHAR(10),
+    facilityID VARCHAR(10),
     EID VARCHAR (10),
     PRIMARY KEY (SSN, doseNumber),
-    FOREIGN KEY (VacTypeID) REFERENCES Vaccine(VacTypeID),
-    FOREIGN KEY (FacilityID) REFERENCES VaccinationFacility(FacilityID),
-    FOREIGN KEY (EID) REFERENCES Employee(EID)
+    FOREIGN KEY (vacTypeID) REFERENCES Vaccine(vacTypeID),
+    FOREIGN KEY (facilityID) REFERENCES VaccinationFacility(facilityID),
+    FOREIGN KEY (EID) REFERENCES Employees(EID)
 );
 
 CREATE TABLE Infection (
     SSN VARCHAR(10),
-    InfectionDate DATE,
-    VariantID VARCHAR(10),
+    infectionDate DATE,
+    variantID VARCHAR(10),
     PRIMARY KEY (SSN, infectionDate),
-    FOREIGN KEY (VariantID) REFERENCES Variant(VariantID)
+    FOREIGN KEY (variantID) REFERENCES Variant(variantID)
 );
+
 
 CREATE TABLE Transfer (
 	transferID VARCHAR(10),
