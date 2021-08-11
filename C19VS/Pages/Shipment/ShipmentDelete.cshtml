@@ -1,0 +1,17 @@
+﻿@page "{shipmentID}"
+@model C19VS.Pages.Shipment.ShipmentDeleteModel
+@{
+}
+
+<h1>Deleting: @Model.Shipment.shipmentID</h1>
+
+<form method="post" class="mt-3">
+    <input hidden asp-for="Shipment.shipmentID" />
+
+    <div class="form-group">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.Shipment.shipmentID</button>
+            <a asp-page="/Shipment/ShipmentIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>
