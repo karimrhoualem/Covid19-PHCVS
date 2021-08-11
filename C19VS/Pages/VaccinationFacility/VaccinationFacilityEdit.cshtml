@@ -1,0 +1,82 @@
+﻿@page
+@model C19VS.Pages.VaccinationFacility.VaccinationFacilityEditModel
+@{
+}
+
+<h1>Editing: @Model.VaccinationFacility.facilityID Facility Name @Model.VaccinationFacility.facilityName</h1>
+
+<form method="post" class="mt-3">
+
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.facilityID">Facility ID</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.facilityID" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.facilityType">Facility Type</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.facilityType" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.facilityName">Facility Name</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.facilityName" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.address">Address</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.address" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.city">City</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.city" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.postalCode">Postal Code</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.postalCode" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.province">Province</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.province" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.telephone">Telephone</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.telephone" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.email">Email</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.email" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="VaccinationFacility.webAddress">Web Address</label>
+        <div class="col-sm-10">
+            <input asp-for="VaccinationFacility.webAddress" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="/VaccinationFacility/VaccinationFacilityIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>
