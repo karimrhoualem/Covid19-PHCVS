@@ -9,7 +9,7 @@ namespace C19VS.Pages.Inventory
 {
     public class InventoryDeleteModel : PageModel
     {
-        public const string TASK_NAME = "Vaccine - DeleteModel";
+        public const string TASK_NAME = "InventoryDeleteModel - DeleteModel";
 
         public Models.Inventory Inventory { get; private set; }
 
@@ -46,7 +46,7 @@ namespace C19VS.Pages.Inventory
 
             DatabaseHelper.ConnectDatabase();
 
-            bool deleteSuccesful = DatabaseHelper.DeleteRecord(typeof(Models.Vaccine), dictionary);
+            bool deleteSuccesful = DatabaseHelper.DeleteRecord(typeof(Models.Inventory), dictionary);
 
             if (deleteSuccesful)
             {
