@@ -19,7 +19,7 @@ namespace C19VS.Pages.Variant
             DatabaseHelper = (DatabaseHelper) databaseHelper;
         }
 
-        public IActionResult OnPostAsync(Models.Variant variant)
+        public IActionResult OnPost(Models.Variant variant)
         {
             DatabaseHelper.ConnectDatabase();
 

@@ -24,6 +24,13 @@
     </div>
 
     <div class="form-group">
+        <label asp-for="Employees.medicare">Medicare</label>
+        <div class="col-sm-10">
+            <input asp-for="Employees.medicare" placeholder="@Model.Employees.medicare" />
+        </div>
+    </div>
+
+    <div class="form-group">
         <label asp-for="Employees.firstName">First Name</label>
         <div class="col-sm-10">
             <input asp-for="Employees.firstName" placeholder="@Model.Employees.firstName" />

@@ -204,7 +204,7 @@ public class DatabaseHelper : IDatabaseHelper
 
 			// Exceptions for Person.
 			if (name == "dob") value = ((DateTime)value).ToShortDateString();
-			if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
+			//if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
 
 			// Exceptions for AgeGroup
 			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
@@ -315,7 +315,7 @@ public class DatabaseHelper : IDatabaseHelper
 
 			// Exceptions for Person.
 			if (name == "dob") value = ((DateTime)value).ToShortDateString();
-			if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
+			//if (name == "infected") value = (int)(((bool)value) ? 1 : 0);
 
 			// Exceptions for AgeGroup
 			if (name == "Allowed") value = (int)(((bool)value) ? 1 : 0);
@@ -331,6 +331,10 @@ public class DatabaseHelper : IDatabaseHelper
 			//Exception for Vaccine
 			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
 			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
+
+			//Exception for Employment
+			if (name == "startDate") value = ((DateTime)value).ToShortDateString();
+			if (name == "endDate") value = ((DateTime)value).ToShortDateString();
 
 			// Exception for Shipment
 			if (name == "receptionDate") value = ((DateTime)value).ToShortDateString();

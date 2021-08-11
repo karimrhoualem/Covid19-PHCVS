@@ -21,14 +21,12 @@ namespace C19VS.Models
 
             this.variantID = variant.variantID;
             this.variantName = variant.variantName ;
-            
         }
 
         public Variant(object[] obj)
         {
             variantID = obj[0] as string;
             variantName= obj[1] as string;
-
         }
     }
 }

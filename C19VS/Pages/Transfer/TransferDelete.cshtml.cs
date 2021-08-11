@@ -59,7 +59,7 @@ namespace C19VS.Pages.Transfer
 
             DatabaseHelper.DisconnectDatabase();
 
-            return RedirectToPage("/Tranfers/TransferIndex");
+            return RedirectToPage("/Transfer/TransferIndex");
         }
     }
 }

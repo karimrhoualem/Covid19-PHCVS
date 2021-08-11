@@ -20,7 +20,7 @@ namespace C19VS.Pages.Infection
             DatabaseHelper = (DatabaseHelper)databaseHelper;
         }
 
-        public async Task<IActionResult> OnGetAsync(string SSN, DateTime infectionDate)
+        public async Task<IActionResult> OnGetAsync(string SSN, string infectionDate)
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>(); // MAYBE CHANGE STRING INTO DATETIME
             dictionary.Add(nameof(SSN), SSN);
@@ -44,7 +44,7 @@ namespace C19VS.Pages.Infection
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add(nameof(infection.SSN), infection.SSN); 
-            dictionary.Add(nameof(infection.infectionDate), infection.infectionDate.ToString());
+            dictionary.Add(nameof(infection.infectionDate), infection.infectionDate.ToShortDateString());
 
             DatabaseHelper.ConnectDatabase();
 

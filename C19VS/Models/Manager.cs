@@ -21,7 +21,7 @@ namespace C19VS.Models
         public string postalCode { get; set; }
         public string citizenship { get; set; }
         public string email { get; set; }
-        public bool infected { get; set; }
+        public int infected { get; set; }
         public string ageGroup { get; set; }
       
 
@@ -68,7 +68,7 @@ namespace C19VS.Models
             postalCode = obj[11] as string;
             citizenship = obj[12] as string;
             email = obj[13] as string;
-            infected = (bool)obj[14];
+            infected = (int)obj[14];
             ageGroup = obj[15] as string;
         }
     }

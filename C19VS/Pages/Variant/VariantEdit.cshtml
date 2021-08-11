@@ -3,11 +3,9 @@
 @{
 }
 
-<h1>Editing manager: @Model.Variant.variantID @Model.Variant.variantName </h1>
+<h1>Editing Variant: @Model.Variant.variantID @Model.Variant.variantName </h1>
 
 <form method="post" class="mt-3">
-    <input hidden asp-for="Variant.variantID" />
-
     <div class="form-group">
         <label asp-for="Variant.variantID">Variant ID</label>
         <div class="col-sm-10">
