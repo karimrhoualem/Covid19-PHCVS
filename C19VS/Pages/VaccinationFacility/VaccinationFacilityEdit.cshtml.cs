@@ -25,7 +25,6 @@ namespace C19VS.Pages.VaccinationFacility
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add(nameof(facilityID), facilityID);
            
-
             DatabaseHelper.ConnectDatabase();
 
             VaccinationFacility = (Models.VaccinationFacility)await DatabaseHelper.SelectRecordAsync(typeof(Models.VaccinationFacility), dictionary);

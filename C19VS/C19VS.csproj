@@ -22,5 +22,6 @@
     <Folder Include="Pages\Employment\" />
     <Folder Include="Pages\Transfer\" />
     <Folder Include="Pages\VaccinationFacility\" />
+    <Folder Include="Pages\Inventory\" />
   </ItemGroup>
 </Project>
