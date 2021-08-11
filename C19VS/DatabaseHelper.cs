@@ -213,7 +213,7 @@ public class DatabaseHelper : IDatabaseHelper
 			if (name == "startDate") value = ((DateTime)value).ToShortDateString();
 			if (name == "endDate") value = ((DateTime)value).ToShortDateString();
 
-			// Exceptions for Transfer
+			// Exceptions for Transfer & Shipment
 			if (name == "receptionDate") value = ((DateTime)value).ToShortDateString();
 
 			//TODO: Add other exceptions below.
@@ -332,6 +332,10 @@ public class DatabaseHelper : IDatabaseHelper
 			//Exception for Vaccine
 			if (name == "approvalDate") value = ((DateTime)value).ToShortDateString();
 			if (name == "suspensionDate") value = ((DateTime)value).ToShortDateString();
+
+			// Exception for Shipment
+			if (name == "receptionDate") value = ((DateTime)value).ToShortDateString();
+
 			sb.Append($"'{value}',");
 		}
 
