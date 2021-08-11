@@ -1,0 +1,17 @@
+﻿@page
+@model C19VS.Pages.Inventory.InventoryDeleteModel
+@{
+}
+
+<h1>Deleting: @Model.Inventory.inventoryID @Model.Inventory.inventoryID</h1>
+
+<form method="post" class="mt-3">
+   
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete @Model.Inventory.inventoryID</button>
+            <a asp-page="/Inventory/InventoryIndex" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>

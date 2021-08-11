@@ -261,8 +261,7 @@ public class DatabaseHelper : IDatabaseHelper
 
 		using var command = new MySqlCommand(sb.ToString(), connection);
         int rowsAffected = command.ExecuteNonQuery();
-
-        if (rowsAffected == 1)
+		if (rowsAffected == 1)
             return true;
 
         return false;
