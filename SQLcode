@@ -48,9 +48,10 @@ CREATE TABLE Employment (
 	facilityID VARCHAR(10),
 	startDate DATE,
 	endDate DATE,
-	PRIMARY KEY (contractNum) 
-);
-
+	PRIMARY KEY (contractNum)
+	FOREIGN KEY (EID) REFERENCES Employees(EID));
+	FOREIGN KEY (facilityID) REFERENCES VaccinationFacility(facilityID);
+	
 CREATE TABLE Variant (
     variantID VARCHAR(10),
     variantName VARCHAR(20),
