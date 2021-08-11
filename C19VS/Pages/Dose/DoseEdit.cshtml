@@ -9,49 +9,49 @@
     <input hidden asp-for="Dose.SSN" />
     <input hidden asp-for="Dose.doseNumber" />
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Dose.SSN">SSN</label>
         <div class="col-sm-10">
             <input asp-for="Dose.SSN" placeholder="@Model.Dose.SSN" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Dose.doseNumber">Dose Number</label>
         <div class="col-sm-10">
             <input asp-for="Dose.doseNumber" placeholder="@Model.Dose.doseNumber" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Dose.doseDate">Dose Date</label>
         <div class="col-sm-10">
             <input asp-for="Dose.doseDate" type="date" placeholder="@Model.Dose.doseDate" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Dose.vacTypeID">Vaccine ID</label>
         <div class="col-sm-10">
             <input asp-for="Dose.vacTypeID" placeholder="@Model.Dose.vacTypeID" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Dose.facilityID">Facility ID</label>
         <div class="col-sm-10">
             <input asp-for="Dose.facilityID" placeholder="@Model.Dose.facilityID" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Dose.EID">Employee ID</label>
         <div class="col-sm-10">
             <input asp-for="Dose.EID" placeholder="@Model.Dose.EID" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Save</button>
             <a asp-page="/Dose/DoseIndex" class="btn btn-primary">Cancel</a>

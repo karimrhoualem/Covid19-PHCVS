@@ -8,21 +8,21 @@
 <form method="post" class="mt-3">
     <input hidden asp-for="Province.province" />
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Province.province">Province</label>
         <div class="col-sm-10">
             <input asp-for="Province.province" placeholder="@Model.Province.province" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <label asp-for="Province.ageGroup">Age Group Allowed</label>
         <div class="col-sm-10">
             <input asp-for="Province.ageGroup" placeholder="@Model.Province.ageGroup" />
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Save</button>
             <a asp-page="/Province/ProvinceIndex" class="btn btn-primary">Cancel</a>
